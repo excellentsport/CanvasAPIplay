@@ -4,6 +4,7 @@ Give full points to any submission without a grade for specified course assignme
 
 # TODO Need to look into whether or not this will handle groups
 # TODO how does this script work with rubrics? (ignores rubric and just gives points, I think)
+# TODO select_assignment_object_menu broke when there was a trailing space in the assignment name. Need to fix.
 
 from canvasapi import Canvas
 import pyinputplus
@@ -17,7 +18,7 @@ def select_assignment_object_menu(ungraded_assignments):
         assignment_names = []
         for assignment in ungraded_assignments:
             assignment_names.append(assignment.name)
-
+        
         if len(assignment_names) == 0:
             print("No ungraded assignments found.")
             print("Select another course.")
@@ -35,13 +36,15 @@ def select_assignment_object_menu(ungraded_assignments):
                 assignment_names, numbered=True, prompt=assignment_prompt_string
             )
 
+            print("You selected: " + response)
+
             for selected_assignment in ungraded_assignments:
                 if selected_assignment.name == response:
                     assignment = selected_assignment
                     print(
                         "\n" + "Accessing info for assignment " + assignment.name + "\n"
                     )
-                    break
+                    return assignment
 
 
 def add_points_to_submitted(selected_assignment, course):

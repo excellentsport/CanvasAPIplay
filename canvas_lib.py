@@ -37,6 +37,8 @@ def get_favorite_courses(canvas_object, user_id):
     """Output a list of active courses from the Canvas
     object that are currently saved as favorites"""
 
+    # TODO: add max age filter - I often favorite old courses
+
     courses = canvas_object.get_user(user_id).get_courses(
         enrollment_type="teacher",
         state="available",

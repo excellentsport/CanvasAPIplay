@@ -40,7 +40,7 @@ def user_select(course):
     # select the user to add points to
     student_prompt_string = "\n\nSelect a student from the list.\n"
 
-    print("Students in selected course: \n\n")
+    print("\nStudents in selected course: \n\n")
 
     student_dicts = []
     for student in course.get_users(enrollment_type=["student"]):
@@ -142,7 +142,7 @@ def confirm_add_points(points_to_add, bb_submission_object, comment):
 
     if comment != "":
         prompt_string = (
-            "Are you sure you wish to add "
+            "\nAre you sure you wish to add "
             + str(points_to_add)
             + " points and the following comment?\n\n"
             + "\""
